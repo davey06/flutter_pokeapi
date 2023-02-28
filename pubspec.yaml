@@ -8,12 +8,16 @@ environment:
 
 dependencies:
   bloc: ^8.1.1
+  dio:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
   flutter_localizations:
     sdk: flutter
+  freezed_annotation: ^2.2.0
   intl: ^0.17.0
+  json_annotation: ^4.8.0
+  retrofit: ^4.0.1
 
 dev_dependencies:
   bloc_test: ^9.1.1
@@ -21,6 +25,10 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^0.3.0
   very_good_analysis: ^4.0.0
+  freezed: ^2.3.2
+  build_runner: ^2.3.3
+  json_serializable: ^6.6.1
+  retrofit_generator: ^5.0.0
 
 flutter:
   uses-material-design: true
