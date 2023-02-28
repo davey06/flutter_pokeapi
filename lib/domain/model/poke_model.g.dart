@@ -6,6 +6,22 @@ part of 'poke_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$_PokePagination _$$_PokePaginationFromJson(Map<String, dynamic> json) =>
+    _$_PokePagination(
+      next: json['next'] as String?,
+      previous: json['previous'] as String?,
+      results: (json['results'] as List<dynamic>)
+          .map((e) => PokeListModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_PokePaginationToJson(_$_PokePagination instance) =>
+    <String, dynamic>{
+      'next': instance.next,
+      'previous': instance.previous,
+      'results': instance.results,
+    };
+
 _$_PokeListModel _$$_PokeListModelFromJson(Map<String, dynamic> json) =>
     _$_PokeListModel(
       name: json['name'] as String,

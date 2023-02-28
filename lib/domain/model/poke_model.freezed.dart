@@ -14,6 +14,188 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+PokePagination _$PokePaginationFromJson(Map<String, dynamic> json) {
+  return _PokePagination.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PokePagination {
+  String? get next => throw _privateConstructorUsedError;
+  String? get previous => throw _privateConstructorUsedError;
+  List<PokeListModel> get results => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PokePaginationCopyWith<PokePagination> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PokePaginationCopyWith<$Res> {
+  factory $PokePaginationCopyWith(
+          PokePagination value, $Res Function(PokePagination) then) =
+      _$PokePaginationCopyWithImpl<$Res, PokePagination>;
+  @useResult
+  $Res call({String? next, String? previous, List<PokeListModel> results});
+}
+
+/// @nodoc
+class _$PokePaginationCopyWithImpl<$Res, $Val extends PokePagination>
+    implements $PokePaginationCopyWith<$Res> {
+  _$PokePaginationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? next = freezed,
+    Object? previous = freezed,
+    Object? results = null,
+  }) {
+    return _then(_value.copyWith(
+      next: freezed == next
+          ? _value.next
+          : next // ignore: cast_nullable_to_non_nullable
+              as String?,
+      previous: freezed == previous
+          ? _value.previous
+          : previous // ignore: cast_nullable_to_non_nullable
+              as String?,
+      results: null == results
+          ? _value.results
+          : results // ignore: cast_nullable_to_non_nullable
+              as List<PokeListModel>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_PokePaginationCopyWith<$Res>
+    implements $PokePaginationCopyWith<$Res> {
+  factory _$$_PokePaginationCopyWith(
+          _$_PokePagination value, $Res Function(_$_PokePagination) then) =
+      __$$_PokePaginationCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? next, String? previous, List<PokeListModel> results});
+}
+
+/// @nodoc
+class __$$_PokePaginationCopyWithImpl<$Res>
+    extends _$PokePaginationCopyWithImpl<$Res, _$_PokePagination>
+    implements _$$_PokePaginationCopyWith<$Res> {
+  __$$_PokePaginationCopyWithImpl(
+      _$_PokePagination _value, $Res Function(_$_PokePagination) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? next = freezed,
+    Object? previous = freezed,
+    Object? results = null,
+  }) {
+    return _then(_$_PokePagination(
+      next: freezed == next
+          ? _value.next
+          : next // ignore: cast_nullable_to_non_nullable
+              as String?,
+      previous: freezed == previous
+          ? _value.previous
+          : previous // ignore: cast_nullable_to_non_nullable
+              as String?,
+      results: null == results
+          ? _value._results
+          : results // ignore: cast_nullable_to_non_nullable
+              as List<PokeListModel>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_PokePagination implements _PokePagination {
+  const _$_PokePagination(
+      {required this.next,
+      required this.previous,
+      required final List<PokeListModel> results})
+      : _results = results;
+
+  factory _$_PokePagination.fromJson(Map<String, dynamic> json) =>
+      _$$_PokePaginationFromJson(json);
+
+  @override
+  final String? next;
+  @override
+  final String? previous;
+  final List<PokeListModel> _results;
+  @override
+  List<PokeListModel> get results {
+    if (_results is EqualUnmodifiableListView) return _results;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_results);
+  }
+
+  @override
+  String toString() {
+    return 'PokePagination(next: $next, previous: $previous, results: $results)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PokePagination &&
+            (identical(other.next, next) || other.next == next) &&
+            (identical(other.previous, previous) ||
+                other.previous == previous) &&
+            const DeepCollectionEquality().equals(other._results, _results));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, next, previous,
+      const DeepCollectionEquality().hash(_results));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PokePaginationCopyWith<_$_PokePagination> get copyWith =>
+      __$$_PokePaginationCopyWithImpl<_$_PokePagination>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PokePaginationToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PokePagination implements PokePagination {
+  const factory _PokePagination(
+      {required final String? next,
+      required final String? previous,
+      required final List<PokeListModel> results}) = _$_PokePagination;
+
+  factory _PokePagination.fromJson(Map<String, dynamic> json) =
+      _$_PokePagination.fromJson;
+
+  @override
+  String? get next;
+  @override
+  String? get previous;
+  @override
+  List<PokeListModel> get results;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PokePaginationCopyWith<_$_PokePagination> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 PokeListModel _$PokeListModelFromJson(Map<String, dynamic> json) {
   return _PokeListModel.fromJson(json);
 }

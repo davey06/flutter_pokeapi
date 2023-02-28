@@ -3,6 +3,13 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_pokeapi/data/remote/poke_api.dart';
+import 'package:flutter_pokeapi/domain/repository/poke_repository.dart';
+
+typedef AppBuilder = FutureOr<Widget> Function(
+  Widget Function(Widget) builder,
+  PokeRepository pokeRepository,
+);
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -20,15 +27,16 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap(AppBuilder builder) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
   Bloc.observer = const AppBlocObserver();
+  final pokeRepo = PokeRepository(PokeApiRemote());
 
   await runZonedGuarded(
-    () async => runApp(await builder()),
+    () async => runApp(await builder((child) => child, pokeRepo)),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }

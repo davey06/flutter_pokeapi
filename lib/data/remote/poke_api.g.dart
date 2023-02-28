@@ -21,7 +21,7 @@ class _PokeApiService implements PokeApiService {
   String? baseUrl;
 
   @override
-  Future<List<PokeListModel>> getListPaging(
+  Future<PokePagination> getListPaging(
     limit,
     offset,
   ) async {
@@ -30,7 +30,7 @@ class _PokeApiService implements PokeApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<PokeListModel>>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<PokePagination>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -42,9 +42,7 @@ class _PokeApiService implements PokeApiService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => PokeListModel.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = PokePagination.fromJson(_result.data!);
     return value;
   }
 
