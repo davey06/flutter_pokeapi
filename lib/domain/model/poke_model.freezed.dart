@@ -359,7 +359,7 @@ mixin _$PokeDetailModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<String> get abilities => throw _privateConstructorUsedError;
-  List<String> get type => throw _privateConstructorUsedError;
+  List<PokeTypes> get types => throw _privateConstructorUsedError;
   String get artworkUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -378,7 +378,7 @@ abstract class $PokeDetailModelCopyWith<$Res> {
       {int id,
       String name,
       List<String> abilities,
-      List<String> type,
+      List<PokeTypes> types,
       String artworkUrl});
 }
 
@@ -398,7 +398,7 @@ class _$PokeDetailModelCopyWithImpl<$Res, $Val extends PokeDetailModel>
     Object? id = null,
     Object? name = null,
     Object? abilities = null,
-    Object? type = null,
+    Object? types = null,
     Object? artworkUrl = null,
   }) {
     return _then(_value.copyWith(
@@ -414,10 +414,10 @@ class _$PokeDetailModelCopyWithImpl<$Res, $Val extends PokeDetailModel>
           ? _value.abilities
           : abilities // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      types: null == types
+          ? _value.types
+          : types // ignore: cast_nullable_to_non_nullable
+              as List<PokeTypes>,
       artworkUrl: null == artworkUrl
           ? _value.artworkUrl
           : artworkUrl // ignore: cast_nullable_to_non_nullable
@@ -438,7 +438,7 @@ abstract class _$$_PokeDetailModelCopyWith<$Res>
       {int id,
       String name,
       List<String> abilities,
-      List<String> type,
+      List<PokeTypes> types,
       String artworkUrl});
 }
 
@@ -456,7 +456,7 @@ class __$$_PokeDetailModelCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? abilities = null,
-    Object? type = null,
+    Object? types = null,
     Object? artworkUrl = null,
   }) {
     return _then(_$_PokeDetailModel(
@@ -472,10 +472,10 @@ class __$$_PokeDetailModelCopyWithImpl<$Res>
           ? _value._abilities
           : abilities // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      type: null == type
-          ? _value._type
-          : type // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      types: null == types
+          ? _value._types
+          : types // ignore: cast_nullable_to_non_nullable
+              as List<PokeTypes>,
       artworkUrl: null == artworkUrl
           ? _value.artworkUrl
           : artworkUrl // ignore: cast_nullable_to_non_nullable
@@ -486,15 +486,16 @@ class __$$_PokeDetailModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PokeDetailModel implements _PokeDetailModel {
+class _$_PokeDetailModel extends _PokeDetailModel {
   const _$_PokeDetailModel(
       {required this.id,
       required this.name,
       required final List<String> abilities,
-      required final List<String> type,
+      required final List<PokeTypes> types,
       required this.artworkUrl})
       : _abilities = abilities,
-        _type = type;
+        _types = types,
+        super._();
 
   factory _$_PokeDetailModel.fromJson(Map<String, dynamic> json) =>
       _$$_PokeDetailModelFromJson(json);
@@ -511,12 +512,12 @@ class _$_PokeDetailModel implements _PokeDetailModel {
     return EqualUnmodifiableListView(_abilities);
   }
 
-  final List<String> _type;
+  final List<PokeTypes> _types;
   @override
-  List<String> get type {
-    if (_type is EqualUnmodifiableListView) return _type;
+  List<PokeTypes> get types {
+    if (_types is EqualUnmodifiableListView) return _types;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_type);
+    return EqualUnmodifiableListView(_types);
   }
 
   @override
@@ -524,7 +525,7 @@ class _$_PokeDetailModel implements _PokeDetailModel {
 
   @override
   String toString() {
-    return 'PokeDetailModel(id: $id, name: $name, abilities: $abilities, type: $type, artworkUrl: $artworkUrl)';
+    return 'PokeDetailModel(id: $id, name: $name, abilities: $abilities, types: $types, artworkUrl: $artworkUrl)';
   }
 
   @override
@@ -536,7 +537,7 @@ class _$_PokeDetailModel implements _PokeDetailModel {
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._abilities, _abilities) &&
-            const DeepCollectionEquality().equals(other._type, _type) &&
+            const DeepCollectionEquality().equals(other._types, _types) &&
             (identical(other.artworkUrl, artworkUrl) ||
                 other.artworkUrl == artworkUrl));
   }
@@ -548,7 +549,7 @@ class _$_PokeDetailModel implements _PokeDetailModel {
       id,
       name,
       const DeepCollectionEquality().hash(_abilities),
-      const DeepCollectionEquality().hash(_type),
+      const DeepCollectionEquality().hash(_types),
       artworkUrl);
 
   @JsonKey(ignore: true)
@@ -565,13 +566,14 @@ class _$_PokeDetailModel implements _PokeDetailModel {
   }
 }
 
-abstract class _PokeDetailModel implements PokeDetailModel {
+abstract class _PokeDetailModel extends PokeDetailModel {
   const factory _PokeDetailModel(
       {required final int id,
       required final String name,
       required final List<String> abilities,
-      required final List<String> type,
+      required final List<PokeTypes> types,
       required final String artworkUrl}) = _$_PokeDetailModel;
+  const _PokeDetailModel._() : super._();
 
   factory _PokeDetailModel.fromJson(Map<String, dynamic> json) =
       _$_PokeDetailModel.fromJson;
@@ -583,7 +585,7 @@ abstract class _PokeDetailModel implements PokeDetailModel {
   @override
   List<String> get abilities;
   @override
-  List<String> get type;
+  List<PokeTypes> get types;
   @override
   String get artworkUrl;
   @override

@@ -40,7 +40,9 @@ _$_PokeDetailModel _$$_PokeDetailModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       abilities:
           (json['abilities'] as List<dynamic>).map((e) => e as String).toList(),
-      type: (json['type'] as List<dynamic>).map((e) => e as String).toList(),
+      types: (json['types'] as List<dynamic>)
+          .map((e) => $enumDecode(_$PokeTypesEnumMap, e))
+          .toList(),
       artworkUrl: json['artworkUrl'] as String,
     );
 
@@ -49,6 +51,28 @@ Map<String, dynamic> _$$_PokeDetailModelToJson(_$_PokeDetailModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'abilities': instance.abilities,
-      'type': instance.type,
+      'types': instance.types.map((e) => _$PokeTypesEnumMap[e]!).toList(),
       'artworkUrl': instance.artworkUrl,
     };
+
+const _$PokeTypesEnumMap = {
+  PokeTypes.normal: 'normal',
+  PokeTypes.fighting: 'fighting',
+  PokeTypes.flying: 'flying',
+  PokeTypes.poison: 'poison',
+  PokeTypes.ground: 'ground',
+  PokeTypes.rock: 'rock',
+  PokeTypes.bug: 'bug',
+  PokeTypes.ghost: 'ghost',
+  PokeTypes.steel: 'steel',
+  PokeTypes.fire: 'fire',
+  PokeTypes.water: 'water',
+  PokeTypes.grass: 'grass',
+  PokeTypes.electric: 'electric',
+  PokeTypes.psychic: 'psychic',
+  PokeTypes.ice: 'ice',
+  PokeTypes.dragon: 'dragon',
+  PokeTypes.dark: 'dark',
+  PokeTypes.fairy: 'fairy',
+  PokeTypes.unknown: 'unknown',
+};

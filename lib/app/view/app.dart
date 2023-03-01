@@ -15,9 +15,9 @@ class App extends StatelessWidget {
       value: _pokeRepository,
       child: MaterialApp(
         theme: ThemeData(
-          appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
+          appBarTheme: AppBarTheme(color: Colors.redAccent.shade700),
           colorScheme: ColorScheme.fromSwatch(
-            accentColor: const Color(0xFF13B9FF),
+            accentColor: Colors.amber.shade900,
           ),
         ),
         localizationsDelegates: AppLocalizations.localizationsDelegates,

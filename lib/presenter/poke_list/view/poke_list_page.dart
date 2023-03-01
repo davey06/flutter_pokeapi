@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pokeapi/domain/model/poke_model.dart';
 import 'package:flutter_pokeapi/domain/repository/poke_repository.dart';
+import 'package:flutter_pokeapi/presenter/poke_detail/view/poke_detail_page.dart';
 import 'package:flutter_pokeapi/presenter/poke_list/poke_list_cubit/poke_list_cubit.dart';
 import 'package:flutter_pokeapi/presenter/widgets/failure_with_retry_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -49,35 +50,53 @@ class PokeListView extends StatelessWidget {
   }
 }
 
-class PokeListWidget extends StatelessWidget {
+class PokeListWidget extends StatefulWidget {
   const PokeListWidget(this.pokeList, {super.key});
   final List<PokeListModel> pokeList;
 
   @override
+  State<PokeListWidget> createState() => _PokeListWidgetState();
+}
+
+class _PokeListWidgetState extends State<PokeListWidget> {
+  final refreshController = RefreshController();
+
+  @override
+  void dispose() {
+    refreshController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _refreshController = RefreshController();
     return SmartRefresher(
-      controller: _refreshController,
+      controller: refreshController,
       onRefresh: () async {
         await context.read<PokeListCubit>().getFirstPage();
-        _refreshController.refreshCompleted(resetFooterState: true);
+        refreshController.refreshCompleted();
       },
       enablePullUp: true,
       onLoading: () async {
         await context.read<PokeListCubit>().getNextPage();
+        refreshController.loadComplete();
       },
       child: ListView.separated(
         itemBuilder: (context, index) {
-          final poke = pokeList[index];
+          final poke = widget.pokeList[index];
           return ListTile(
-            title: Text(poke.name),
+            title: Text('#${index + 1} ${poke.name.toUpperCase()}'),
             onTap: () {
-              // Todo: Open Detail
+              Navigator.push(
+                  context,
+                  MaterialPageRoute<dynamic>(
+                      builder: (context) => PokeDetailPage(
+                            pokeName: poke.name,
+                          )));
             },
           );
         },
         separatorBuilder: (_, __) => const Divider(),
-        itemCount: pokeList.length,
+        itemCount: widget.pokeList.length,
       ),
     );
   }
