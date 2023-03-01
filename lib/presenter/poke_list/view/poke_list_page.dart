@@ -4,6 +4,7 @@ import 'package:flutter_pokeapi/domain/model/poke_model.dart';
 import 'package:flutter_pokeapi/domain/repository/poke_repository.dart';
 import 'package:flutter_pokeapi/presenter/poke_list/poke_list_cubit/poke_list_cubit.dart';
 import 'package:flutter_pokeapi/presenter/widgets/failure_with_retry_view.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class PokeListPage extends StatelessWidget {
   const PokeListPage({super.key});
@@ -54,9 +55,16 @@ class PokeListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
+    final _refreshController = RefreshController();
+    return SmartRefresher(
+      controller: _refreshController,
       onRefresh: () async {
         await context.read<PokeListCubit>().getFirstPage();
+        _refreshController.refreshCompleted(resetFooterState: true);
+      },
+      enablePullUp: true,
+      onLoading: () async {
+        await context.read<PokeListCubit>().getNextPage();
       },
       child: ListView.separated(
         itemBuilder: (context, index) {

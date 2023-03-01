@@ -13,7 +13,6 @@ class PokeListCubit extends Cubit<PokeListState> {
 
   Future<void> getNextPage() async {
     currentPage++;
-    emit(state.copyWith(status: ListStatus.loading));
     try {
       final pokeList = await _pokeRepository.getListPaging(page: currentPage);
       final list = [...state.pokeListModel, ...pokeList];

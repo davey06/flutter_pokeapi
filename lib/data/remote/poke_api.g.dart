@@ -37,7 +37,7 @@ class _PokeApiService implements PokeApiService {
     )
             .compose(
               _dio.options,
-              '/pokemon/?limit=${limit}&offset={offset}',
+              '/pokemon/?limit=${limit}&offset=${offset}',
               queryParameters: queryParameters,
               data: _data,
             )
