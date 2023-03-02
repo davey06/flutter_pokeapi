@@ -3,7 +3,7 @@ import 'package:flutter_pokeapi/domain/repository/poke_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
-import '../helpers/helpers.dart';
+import '../../helpers/helpers.dart';
 
 void main() {
   group('PokeRepository', () {
