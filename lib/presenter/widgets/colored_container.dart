@@ -25,6 +25,7 @@ class ColoredContainer extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           Container(
+            margin: const EdgeInsets.only(top: 4),
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             decoration: BoxDecoration(
               color: Colors.white70,

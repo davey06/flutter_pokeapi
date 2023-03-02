@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pokeapi/domain/model/poke_model.dart';
 import 'package:flutter_pokeapi/domain/model/poke_type_enum.dart';
 import 'package:flutter_pokeapi/domain/repository/poke_repository.dart';
+import 'package:flutter_pokeapi/presenter/extension/string_extension.dart';
 import 'package:flutter_pokeapi/presenter/poke_detail/cubit/poke_detail_cubit.dart';
 import 'package:flutter_pokeapi/presenter/widgets/colored_container.dart';
 import 'package:flutter_pokeapi/presenter/widgets/failure_with_retry_view.dart';
@@ -101,9 +102,9 @@ class PokeNameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('#$id '),
+        Text('#$id'),
         const SizedBox(width: 4),
-        Text(name),
+        Text(name.toTitleCase()),
       ],
     );
   }
@@ -138,7 +139,8 @@ class AbilitiesWidget extends StatelessWidget {
       bgColor: bgColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: abilities.map(Text.new).toList(),
+        children:
+            abilities.map((ability) => Text(ability.toTitleCase())).toList(),
       ),
     );
   }

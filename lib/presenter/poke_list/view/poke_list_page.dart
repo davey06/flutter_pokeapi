@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pokeapi/domain/model/poke_model.dart';
 import 'package:flutter_pokeapi/domain/repository/poke_repository.dart';
+import 'package:flutter_pokeapi/presenter/extension/string_extension.dart';
 import 'package:flutter_pokeapi/presenter/poke_detail/view/poke_detail_page.dart';
 import 'package:flutter_pokeapi/presenter/poke_list/poke_list_cubit/poke_list_cubit.dart';
 import 'package:flutter_pokeapi/presenter/widgets/failure_with_retry_view.dart';
@@ -84,7 +85,7 @@ class _PokeListWidgetState extends State<PokeListWidget> {
         itemBuilder: (context, index) {
           final poke = widget.pokeList[index];
           return ListTile(
-            title: Text('#${index + 1} ${poke.name.toUpperCase()}'),
+            title: Text('#${index + 1} ${poke.name.toTitleCase()}'),
             onTap: () {
               Navigator.push(
                   context,
