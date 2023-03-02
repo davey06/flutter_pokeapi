@@ -2,13 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:flutter_pokeapi/domain/model/poke_model.dart';
 
 class PokeApiRemote {
+  PokeApiRemote({Dio? dio}) : _dio = dio ?? Dio();
+  final Dio _dio;
+
   static const _fetchLimit = 20;
   static const _baseUrl = 'https://pokeapi.co/api/v2';
-  final dio = Dio();
 
   Future<List<PokeListModel>> getListPaging({int page = 0}) async {
     try {
-      final response = await dio.get<Map<String, dynamic>>(
+      final response = await _dio.get<Map<String, dynamic>>(
           '$_baseUrl/pokemon/?limit=$_fetchLimit&offset=${_fetchLimit * page}');
       final data = response.data;
       if (data != null) {
@@ -27,7 +29,7 @@ class PokeApiRemote {
   Future<PokeDetailModel> getDetail(String name) async {
     try {
       final response =
-          await dio.get<Map<String, dynamic>>('$_baseUrl/pokemon/$name');
+          await _dio.get<Map<String, dynamic>>('$_baseUrl/pokemon/$name');
       final data = response.data;
       if (data == null) {
         throw Exception('Poke Not Found');
