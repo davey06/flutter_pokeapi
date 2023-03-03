@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pokeapi/domain/repository/poke_repository.dart';
@@ -21,9 +19,9 @@ void main() {
       pokeRepository = MockPokeRepository();
     });
 
-    testWidgets('renders WeatherView', (tester) async {
+    testWidgets('renders PokeDetailView', (tester) async {
       await mockNetworkImagesFor(() async => tester.pumpApp(
-            PokeDetailPage(pokeName: mockName),
+            const PokeDetailPage(pokeName: mockName),
             pokeRepository: pokeRepository,
           ));
 
@@ -39,7 +37,7 @@ void main() {
     });
 
     testWidgets('renders loading for initial state', (tester) async {
-      when(() => pokeDetailCubit.state).thenReturn(PokeDetailState());
+      when(() => pokeDetailCubit.state).thenReturn(const PokeDetailState());
       await tester.pumpWidget(
         BlocProvider.value(
           value: pokeDetailCubit,
@@ -51,8 +49,8 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
-    testWidgets('renders WeatherPopulated for success state', (tester) async {
-      when(() => pokeDetailCubit.state).thenReturn(PokeDetailState(
+    testWidgets('renders for success state', (tester) async {
+      when(() => pokeDetailCubit.state).thenReturn(const PokeDetailState(
         status: DetailStatus.success,
         pokeDetailModel: FakePokeDetailModel.data,
       ));
@@ -69,9 +67,9 @@ void main() {
       expect(find.byType(SuccessView), findsOneWidget);
     });
 
-    testWidgets('renders WeatherPopulated for failure state', (tester) async {
+    testWidgets('renders for failure state', (tester) async {
       when(() => pokeDetailCubit.state)
-          .thenReturn(PokeDetailState(status: DetailStatus.failure));
+          .thenReturn(const PokeDetailState(status: DetailStatus.failure));
       await tester.pumpWidget(
         BlocProvider.value(
           value: pokeDetailCubit,
