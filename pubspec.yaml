@@ -26,7 +26,7 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^0.3.0
   very_good_analysis: ^4.0.0
-  freezed: ^2.3.2
+  freezed: ^2.3.3
   build_runner: ^2.3.3
   json_serializable: ^6.6.1
   network_image_mock: ^2.1.1
